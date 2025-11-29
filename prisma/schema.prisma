@@ -1,14 +1,14 @@
-datasource db {
-  provider = "postgresql"
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
+datasource db {
+  provider = "postgresql"
+}
+
 model services {
-  id        BigInt   @id @default(autoincrement())
-  name      String
+  id   BigInt @id @default(autoincrement())
+  name String
 }
 
 model specialists {

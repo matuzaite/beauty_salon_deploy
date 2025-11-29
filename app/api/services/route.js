@@ -6,6 +6,6 @@ export async function GET() {
     return Response.json(services);
   } catch (error) {
     console.error("API /services error:", error);
-    return new Response("Server error", { status: 500 });
+    return Response.json({ error: error.message }, { status: 500 });
   }
 }

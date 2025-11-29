@@ -1,20 +1,11 @@
 import prisma from "@/lib/prisma";
 
-const safeJson = (data) =>
-  JSON.parse(
-    JSON.stringify(data, (_, value) =>
-      typeof value === "bigint" ? value.toString() : value
-    )
-  );
-
 export async function GET() {
   try {
-    const services = await prisma.services.findMany({
-      orderBy: { id: "asc" },
-    });
-    return Response.json(safeJson(services));
-  } catch (err) {
-    console.error("API /services error:", err);
+    const services = await prisma.services.findMany();
+    return Response.json(services);
+  } catch (error) {
+    console.error("API /services error:", error);
     return new Response("Server error", { status: 500 });
   }
 }
